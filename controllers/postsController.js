@@ -219,7 +219,6 @@ const addingLikeToPost = async (req, res) => {
 const addingDislikeToPost = async (req, res) => {
     const id = req.params.id;
     const { username } = req;
-    console.log(id)
     if (!id) {
         return res.status(400).json({ message: 'Id is not valid.' })
     }
@@ -256,7 +255,6 @@ const addingDislikeToPost = async (req, res) => {
         user.save();
         res.status(200).json(foundPost);
     } catch (err) {
-        console.log('Error', err);
         res.status(500).json({ message: `Unable to update dislikes on post. ${err}` });
     }
 }

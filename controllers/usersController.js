@@ -47,10 +47,6 @@ const registerNewUser = async (req, res) => {
 const loginUser = async (req, res) => {
     const userInput = JSON.parse(JSON.stringify(req.body));
 
-    // if (!username || !password) {
-    //     return res.status(400).json({ message: 'Username or password are missing.' });
-    // }
-
     try {
         await userLoginSchema.validate(userInput, { abortEarly: false });
     } catch (err) {
@@ -58,7 +54,6 @@ const loginUser = async (req, res) => {
         err.inner.map(e => {
             errors.push({ field: e.path, message: e.message })
         })
-        console.log(errors);
         return res.status(400).json(errors);
     }
 
